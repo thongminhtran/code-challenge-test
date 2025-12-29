@@ -1,0 +1,100 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.app-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: float 20s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  top: -200px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  bottom: -150px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  75% {
+    transform: translate(-30px, -20px) scale(1.02);
+  }
+}
+
+.blob-3 {
+  animation-name: floatCenter;
+}
+
+@keyframes floatCenter {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  25% {
+    transform: translate(-45%, -55%) scale(1.05);
+  }
+  50% {
+    transform: translate(-55%, -45%) scale(0.95);
+  }
+  75% {
+    transform: translate(-45%, -45%) scale(1.02);
+  }
+}
+
+.app-main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .app {
+    padding: 1rem;
+  }
+}
