@@ -52,6 +52,17 @@
   border-radius: 50%;
   object-fit: cover;
   background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.token-icon-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
 }
 
 .token-currency {

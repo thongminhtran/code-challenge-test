@@ -11,6 +11,33 @@ interface TokenSelectProps {
   excludeToken?: Token | null;
 }
 
+// Fallback icon component for tokens without images
+function TokenFallbackIcon({ currency }: { currency: string }) {
+  return (
+    <div className="token-icon token-icon-fallback">
+      {currency.charAt(0).toUpperCase()}
+    </div>
+  );
+}
+
+// Token icon with fallback
+function TokenIcon({ token }: { token: Token }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return <TokenFallbackIcon currency={token.currency} />;
+  }
+
+  return (
+    <img
+      src={token.image}
+      alt={token.currency}
+      className="token-icon"
+      onError={() => setHasError(true)}
+    />
+  );
+}
+
 export function TokenSelect({
   tokens,
   selectedToken,
@@ -59,10 +86,6 @@ export function TokenSelect({
     setSearch('');
   };
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.style.display = 'none';
-  };
-
   return (
     <div className="token-select" ref={dropdownRef}>
       <label className="token-select-label">{label}</label>
@@ -74,12 +97,7 @@ export function TokenSelect({
       >
         {selectedToken ? (
           <div className="token-selected">
-            <img
-              src={selectedToken.image}
-              alt={selectedToken.currency}
-              className="token-icon"
-              onError={handleImageError}
-            />
+            <TokenIcon token={selectedToken} />
             <span className="token-currency">{selectedToken.currency}</span>
           </div>
         ) : (
@@ -127,12 +145,7 @@ export function TokenSelect({
                   }`}
                   onClick={() => handleSelect(token)}
                 >
-                  <img
-                    src={token.image}
-                    alt={token.currency}
-                    className="token-icon"
-                    onError={handleImageError}
-                  />
+                  <TokenIcon token={token} />
                   <div className="token-info">
                     <span className="token-currency">{token.currency}</span>
                     <span className="token-price">
