@@ -1,73 +1,86 @@
-# React + TypeScript + Vite
+# Problem 2: Fancy Form - Currency Swap
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern currency swap form built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Token selection with searchable dropdown
+- Real-time exchange rate calculation
+- Live USD value display
+- Input validation with error messages
+- Swap direction button to switch tokens
+- Loading states and success feedback
+- Responsive design with animated gradient background
+- Fallback icons for tokens without images
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- TypeScript
+- Vite 5
+- CSS (no external UI libraries)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+ (recommended: 20+)
+- npm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Navigate to the problem2 directory
+cd problem2
+
+# Install dependencies
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Start the development server
+npm run dev
 ```
+
+Then open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Production Build
+
+```bash
+# Build for production
+npm run build
+
+# Preview the production build
+npm run preview
+```
+
+## Project Structure
+
+```
+problem2/
+├── src/
+│   ├── components/
+│   │   ├── CurrencySwapForm.tsx   # Main swap form component
+│   │   ├── CurrencySwapForm.css
+│   │   ├── TokenSelect.tsx        # Token dropdown selector
+│   │   └── TokenSelect.css
+│   ├── hooks/
+│   │   └── useTokens.ts           # Hook for fetching token prices
+│   ├── types/
+│   │   └── index.ts               # TypeScript interfaces
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.tsx
+├── index.html
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## API References
+
+- **Token Prices**: https://interview.switcheo.com/prices.json
+- **Token Icons**: https://github.com/Switcheo/token-icons/tree/main/tokens
